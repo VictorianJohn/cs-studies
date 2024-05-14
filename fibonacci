@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FibonacciProgram
+{
+    class Program
+    {        
+        // User input tells from what place in the Fibonacci sequence the program should return a value
+        static void Main(string[] args)
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(Fibonacci(n));
+        }	
+
+        // Receives 'n' as the place in the Fibonacci's sequence we want to know the value
+        // using recursions. n = 46 is the last number prevented from overflow.
+        public static int Fibonacci(int n)
+        {
+            if(n == 1 || n == 2)
+                return 1;
+
+            return Fibonacci(n - 1) + Fibonacci (n - 2);
+        }
+    }
+}
+
