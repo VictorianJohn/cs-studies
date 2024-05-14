@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PrintaPyramid
+{
+    class Program
+    {
+        // Programa que produz um triângulo baseado no input do usuário ("quantas linhas o triângulo terá?").
+        // Cuja área será coberta por '*'. Por exemplo, um triângulo com totalRowsNum = 3 resultará em:
+        //
+        //   *
+        //  ***
+        // *****
+        static void Main(string[] args)
+        {
+            Console.WriteLine("How many lines do you want a triangle?");
+            string totalRowsTxt = Console.ReadLine();
+
+            // Conversão do input em número            
+            int totalRowsNum = Convert.ToInt32(totalRowsTxt);
+
+            // Cálculo do máximo de espaços (na última linha) em que '*' poderá ser colocado. 
+            // O mesmo que o comprimento da base do triângulo final, que impõe um limite de varredura
+            // para as linhas da mesma forma em que 'totalRowsNum' limita a altura do triângulo.
+            int maxColumnsNum = 1 + 2* (totalRowsNum - 1);
+
+            // Varredura por linha
+            for(int currentRow = 0; currentRow < totalRowsNum; currentRow++)
+            {
+                // Varredura por colunas (espaços) dentro de uma linha
+                for(int currentColumn = 0; currentColumn < maxColumnsNum; currentColumn++ )
+                {
+                    // Intervalo de coordenadas do centro para fora que distribui igualmente os '*' 
+                    // que precisam ser colocados em cada linha para ambos os sentidos. 
+                    if(currentColumn >= (int)(maxColumnsNum/2)-currentRow && currentColumn <= (maxColumnsNum/2)+currentRow)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" "); // pular um espaço
+                    }
+                }
+                Console.Write("\n"); // pular uma linha
+            }
+        }	
+    }
+}
+
